@@ -1,20 +1,29 @@
 {
-  "name": "eleventy-libdoc",
-  "version": "0.11.0",
-  "description": "An Eleventy starter project to craft slick and responsive documentation",
+  "name": "eleventy-blog",
+  "title": "Adam J. Jolicoeur's Blog",
+  "version": "0.1.0",
+  "homepage": "https://blog.adamjolicoeur.com",
+  "description": "A blog built on 11ty-libdoc",
   "main": "index.js",
   "scripts": {
+    "clean": "rm -rf _site .cache",
+    "serve": "npx @11ty/eleventy --serve",
+    "build": "npm run clean && npx @11ty/eleventy",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
-  "author": "",
+  "author": "Adam J. Jolicoeur",
   "license": "ISC",
   "type": "module",
   "dependencies": {
-    "@11ty/eleventy": "^3.0.0",
-    "@11ty/eleventy-img": "^6.0.1",
-    "@11ty/eleventy-navigation": "^0.3.5",
+    "@11ty/eleventy": "^3.1.2",
+    "@11ty/eleventy-img": "^6.0.4",
+    "@11ty/eleventy-navigation": "^1.0.4",
     "@11ty/eleventy-plugin-rss": "^2.0.4",
-    "sharp": "^0.33.5"
-  }
+    "sharp": "^0.34.3"
+  },
+    "browserslist": [
+    "> 5%, not dead",
+    "last 2 major versions"
+  ]
 }

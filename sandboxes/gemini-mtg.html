@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gemini MTG Prompt</title>
+</head>
+<body>
+    <h1>Gemini MTG Prompt Sandbox</h1>
+</body>
+<script>
+  import React, { useState, useEffect } from 'react';
+import { Container, Typography, TextField, Button, Grid, Paper } from '@mui/material';
+
+function App() {
+  const [player1Life, setPlayer1Life] = useState(20);
+  const [player2Life, setPlayer2Life] = useState(20);
+  const [playerName1, setPlayerName1] = useState("Player 1");
+  const [playerName2, setPlayerName2] = useState("Player 2");
+  const [matchHistory, setMatchHistory] = useState([]); // Array to store match data
+
+  // Load data from localStorage on component mount
+  useEffect(() => {
+    const savedData = JSON.parse(localStorage.getItem('mtgLifeCounterData'));
+    if (savedData) {
+      setPlayer1Life(savedData.player1Life);
+      setPlayer2Life(savedData.player2Life);
+      setPlayerName1(savedData.playerName1);
+      setPlayerName2(savedData.playerName2);
+      setMatchHistory(savedData.matchHistory);
+    }
+  }, []);
+
+  // Save data to localStorage whenever state changes
+  useEffect(() => {
+    const dataToSave = { player1Life, player2Life, playerName1, playerName2, matchHistory };
+    localStorage.setItem('mtgLifeCounterData', JSON.stringify(dataToSave));
+  }, [player1Life, player2Life, playerName1, playerName2, matchHistory]);
+
+
+  const updateLife = (player, change) => {
+    if (player === 1) {
+      setPlayer1Life(Math.max(0, player1Life + change)); // Prevent life from going below 0
+    } else {
+      setPlayer2Life(Math.max(0, player2Life + change));
+    }
+  };
+
+  const handleMatchEnd = (winner) => {
+    const matchData = {
+      player1: playerName1,
+      player2: playerName2,
+      player1Life: player1Life,
+      player2Life: player2Life,
+      winner: winner,  // Could be 1, 2, or 0 for a draw
+      date: new Date().toLocaleDateString(), // Record match date
+    };
+    setMatchHistory([...matchHistory, matchData]);
+    // Reset Life totals for new match
+    setPlayer1Life(20);
+    setPlayer2Life(20);
+  };
+
+  const exportData = () => {
+    const dataToExport = { player1Life, player2Life, playerName1, playerName2, matchHistory };
+    const jsonString = JSON.stringify(dataToExport, null, 2); // Beautified JSON
+
+    const blob = new Blob([jsonString], { type: 'application/json' });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = 'mtg_data.json';
+    link.click();
+    URL.revokeObjectURL(url); // Clean up
+  };
+
+  return (
+    <Container maxWidth="sm">
+      <Paper elevation={3} sx={{ padding: 3, marginTop: 4 }}>
+        <Typography variant="h4" align="center" gutterBottom>MTG Life Counter</Typography>
+
+        <Grid container spacing={2}>
+          <Grid item xs={12}>
+            <TextField label="Player 1 Name" fullWidth value={playerName1} onChange={e => setPlayerName1(e.target.value)} />
+          </Grid>
+          <Grid item xs={6}>
+            <Typography variant="h5">Player 1: {player1Life}</Typography>
+            <Button variant="contained" onClick={() => updateLife(1, 1)}>+1</Button>{' '}
+            <Button variant="contained" onClick={() => updateLife(1, -1)}>-1</Button>
+          </Grid>
+          <Grid item xs={12}>
+            <TextField label="Player 2 Name" fullWidth value={playerName2} onChange={e => setPlayerName2(e.target.value)} />
+          </Grid>
+          <Grid item xs={6}>
+            <Typography variant="h5">Player 2: {player2Life}</Typography>
+            <Button variant="contained" onClick={() => updateLife(2, 1)}>+1</Button>{' '}
+            <Button variant="contained" onClick={() => updateLife(2, -1)}>-1</Button>
+          </Grid>
+
+          <Grid item xs={12}>
+            <Button variant="contained" color="primary" onClick={() => handleMatchEnd(1)}>Player 1 Wins</Button>{' '}
+            <Button variant="contained" color="secondary" onClick={() => handleMatchEnd(2)}>Player 2 Wins</Button>{' '}
+            <Button variant="contained" color="default" onClick={() => handleMatchEnd(0)}>Draw</Button>
+          </Grid>
+
+          <Grid item xs={12}>
+            <Typography variant="h6">Match History:</Typography>
+            {matchHistory.map((match, index) => (
+              <div key={index}>
+                {match.player1} ({match.player1Life}) vs {match.player2} ({match.player2Life}) - Winner: {match.winner === 1 ? match.player1 : match.winner === 2 ? match.player2 : "Draw"} - {match.date}
+              </div>
+            ))}
+          </Grid>
+
+          <Grid item xs={12}>
+            <Button variant="contained" onClick={exportData}>Export Data</Button>
+          </Grid>
+
+        </Grid>
+      </Paper>
+    </Container>
+  );
+}
+
+export default App;
+</script>
+</html>

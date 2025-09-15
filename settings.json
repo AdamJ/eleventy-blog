@@ -1,32 +1,29 @@
 {
-    "siteTitle": "My Project Title",
-    "siteDescription": "This is the description of my project title",
-    "author": "John Doe",
-    "faviconUrl": "/assets/myfavicon.png",
+    "siteTitle": "Blog & Docs",
+    "siteDescription": "This is the blog and document site for my projects",
+    "author": "Adam Jolicoeur",
+    "faviconUrl": "/assets/avatar.png",
+    "gitLastModifiedDate": true,
     "blogTitle": "Blog",
-    "blogDescription": "Here is the description of the blog part",
-    "productionUrl": "https://eleventy-libdoc.netlify.app",
+    "blogDescription": "A blog about web development and design",
+    "productionUrl": "https://blog.adamjolicoeur.com",
     "customLinks": [
         {
-            "url": "/feed.xml",
-            "text": "Atom feed"
+            "url": "https://www.adamjolicoeur.com",
+            "text": "Portfolio"
         },
         {
-            "url": "https://github.com/ita-design-system/eleventy-libdoc",
+            "url": "https://github.com/AdamJ/eleventy-blog",
             "text": "GitHub"
         },
         {
-            "url": "#",
-            "text": "Bluesky"
-        },
-        {
-            "url": "#",
+            "url": "https://www.linkedin.com/in/ajjolicoeur/",
             "text": "LinkedIn"
         },
         {
-            "url": "#",
-            "text": "CodePen"
+            "url": "/feed.xml",
+            "text": "Feed"
         }
     ],
-    "editThisPageRootUrl": "https://github.com/ita-design-system/eleventy-libdoc/blob/main"
+    "editThisPageRootUrl": "https://github.com/AdamJ/eleventy-blog/blob/main"
 }
