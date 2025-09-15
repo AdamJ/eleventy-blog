@@ -12,20 +12,20 @@ const userConfig = require("../settings.json");
 
 export default {
     lang: userConfig.lang ?? "en",
-    siteTitle: userConfig.siteTitle ?? "11ty LibDoc",
-    siteDescription: userConfig.siteDescription ?? "An Eleventy starter project to craft slick documentation",
-    siteLogoUrl: userConfig.siteLogoUrl ?? "",
+    siteTitle: userConfig.siteTitle ?? "Blog & Docs",
+    siteDescription: userConfig.siteDescription ?? "A blog built on 11ty-libdoc",
+    siteLogoUrl: userConfig.siteLogoUrl ?? "/assets/avatar.png",
     siteLogoMaxHeight: userConfig.siteLogoMaxHeight ?? 60,
-    author: userConfig.author ?? false,
+    author: userConfig.author ?? true,
     faviconUrl: userConfig.faviconUrl ?? "/favicon.png",
-    ogImageUrl: userConfig.ogImageUrl ?? "https://raw.githubusercontent.com/ita-design-system/ita-medias/refs/heads/main/ogimage-11ty-libdoc.png",
+    ogImageUrl: userConfig.ogImageUrl ?? "https://github.com/AdamJ/AdamJ.github.io/blob/main/src/assets/img/avatar-large.jpg",
     customLinks: userConfig.customLinks ?? [],
     blogTitle: userConfig.blogTitle ?? "Blog Posts",
     blogDescription: userConfig.blogDescription ?? false,
-    blogAuthor: userConfig.blogAuthor ?? false,
+    blogAuthor: userConfig.blogAuthor ?? "",
     blogSlug: userConfig.blogSlug ?? "posts",
     displayTagsListLink: userConfig.displayTagsListLink ?? true,
-    tocEnabled: userConfig.tocEnabled ?? true,
+    tocEnabled: userConfig.tocEnabled ?? false,
     tocHtmlTags: userConfig.tocHtmlTags ?? ["h1", "h2", "h3", "h4", "h5", "h6"],
     tocMinTags: userConfig.tocMinTags ?? 1,
     htmlBasePathPrefix: userConfig.htmlBasePathPrefix ?? "",
@@ -38,11 +38,12 @@ export default {
         "yaml",
         "liquid",
         "markdown",
-        "css"
+        "css",
+        "bash"
     ],
     roundedImagesCorners: userConfig.roundedImagesCorners ?? true,
     editThisPageRootUrl: userConfig.editThisPageRootUrl ?? false,
-    imgBgColorLightMode: userConfig.imgBgColorLightMode ?? "transparent",
-    imgBgColorDarkMode: userConfig.imgBgColorDarkMode ?? "transparent",
-    productionUrl: userConfig.productionUrl ?? ""
+    imgBgColorLightMode: userConfig.imgBgColorLightMode ?? "#fff",
+    imgBgColorDarkMode: userConfig.imgBgColorDarkMode ?? "#000",
+    productionUrl: userConfig.productionUrl ?? "https://blog.adamjolicoeur.com"
 };
