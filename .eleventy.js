@@ -52,8 +52,9 @@ export default function(eleventyConfig) {
     eleventyConfig.addPassthroughCopy("assets");
     eleventyConfig.addPassthroughCopy("core/assets");
     eleventyConfig.addPassthroughCopy("favicon.png");
+    eleventyConfig.addPassthroughCopy("CNAME");
     // END FILE COPY
-    
+
     return {
         pathPrefix: libdocConfig.htmlBasePathPrefix
     }
