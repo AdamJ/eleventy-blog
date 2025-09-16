@@ -5,6 +5,9 @@
   "homepage": "https://blog.adamjolicoeur.com",
   "description": "A blog built on 11ty-libdoc",
   "main": "index.js",
+  "engines": {
+    "node": "22"
+  },
   "scripts": {
     "clean": "rm -rf _site .cache",
     "serve": "npx @11ty/eleventy --serve",
