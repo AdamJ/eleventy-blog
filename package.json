@@ -5,10 +5,13 @@
   "homepage": "https://blog.adamjolicoeur.com",
   "description": "A blog built on 11ty-libdoc",
   "main": "index.js",
+  "engines": {
+    "node": "22"
+  },
   "scripts": {
     "clean": "rm -rf _site .cache",
     "serve": "npx @11ty/eleventy --serve",
-    "build": "npm run clean && npx @11ty/eleventy",
+    "build": "npx @11ty/eleventy",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
